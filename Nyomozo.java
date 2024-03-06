@@ -25,11 +25,11 @@ public class Nyomozo {
 	}
 	
 	public void setGyanusitottak(String[] gyanusitottak) {
-		this.gyanusitottak = getGyanusitottak();
+		this.gyanusitottak = gyanusitottak;
 	}
 	
 	public void setNyomok(int[] nyomok) {
-		this.nyomok = getNyomok();
+		this.nyomok = nyomok;
 	}
 	
 	public boolean nyomotFelhasznal(int index) {
@@ -50,15 +50,59 @@ public class Nyomozo {
 	}
 	
 	public boolean felmentoBizonyitek(String kit) {
-		return false;
+		try {
+			int tempIndex = -1;
+			String[] tempGyan = new String[this.gyanusitottak.length - 1];
+			int count = 0;
+			for(int i = 0; i < this.gyanusitottak.length; i++) {
+				if(this.gyanusitottak[i] == kit) {
+					tempIndex = i;
+				}
+			}
+			
+			if(tempIndex == -1) {
+				return false;
+			}
+			
+			for(int i = 0;i < this.gyanusitottak.length; i++) {
+				if(i != tempIndex) {
+					tempGyan[count] = this.gyanusitottak[i];
+					count++;
+				}
+			}
+			this.gyanusitottak = tempGyan;
+			return true;
+		}catch (Exception e) {
+			return false;
+		}
+		
 	}
 	
 	public void inditek() {
-		
+		if(this.gyanusitottak.length > 0) {
+			
+			String nev = this.gyanusitottak[0];
+			int count = 0;
+			String[] temp = new String[this.gyanusitottak.length];
+			
+			for(int i = 1; i < this.gyanusitottak.length; i++) {
+				temp[count] = this.gyanusitottak[i];
+				count++;
+			}
+			
+			temp[count] = nev;
+			this.gyanusitottak = temp;
+		}
 	}
 	
 	public void nyomokatRendez() {
+		int[] kekw = new int[this.nyomok.length];
 		
+		for(int i = this.nyomok.length, k = 0; i > 0; i--,k++) {
+			kekw[k] = this.nyomok[i];
+		}
+		
+		this.nyomok = kekw;
 	}
 	
 	public void alibikEliminalasa() {
