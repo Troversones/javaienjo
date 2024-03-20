@@ -42,7 +42,7 @@ public class Ember {
 			tmp = "halott";
 		}
 			
-		return String.format("Emberunk neve %s, es jelenleg %s", this.nev,tmp);
+		return String.format("Emberunk neve %s, es jelenleg %s.", this.nev,tmp);
 	}
 	
 	public boolean vajonElMeg() {
@@ -51,7 +51,7 @@ public class Ember {
 	
 	public void gyogyul(int mennyivel) {
 		if(this.eletEro == 0) {
-			System.err.println("Sajnalom, elkestetek");
+			System.err.println("Sajnalom, elkestetek.");
 		}else {
 			this.eletEro += mennyivel;
 		}
