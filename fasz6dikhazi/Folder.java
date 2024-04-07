@@ -1,35 +1,33 @@
+import java.util.Arrays;
+
 public class Folder extends FileSystemEntry{
-	private FileSystemEntry[] children = null;
+	private FileSystemEntry[] children;
 	
 	public Folder(Folder parent, String name) {
 		super(parent,name);
+		this.children = null;
+	}
+	
+	public void addChild(FileSystemEntry child) {
+		if (children == null) {
+	        children = new FileSystemEntry[] { child };
+	    } else {
+	        FileSystemEntry[] leugrokaTetorol = Arrays.copyOf(children, children.length + 1);
+	        leugrokaTetorol[children.length] = child;
+	        children = leugrokaTetorol;
+	    }
 	}
 	
 	@Override
 	public long size() {
-		long sizexd = 0;
-		for (int i = 0; i < this.children.length; i++) {
-			if(this.children[i] == null) {
-				return 0;
-			}else {
-				sizexd += this.children[i].size();
-			}
-		}
-		return sizexd;
-	}
-	
-	public void addChild(FileSystemEntry child) {
-		if(this.children == null) {
-			this.children = new FileSystemEntry[] {child};
-		}else {
-			FileSystemEntry[] xd = new FileSystemEntry[this.children.length + 1];
-			for (int i = 0; i < xd.length; i++) {
-				if(i == xd.length - 1) {					
-					xd[i] = child;
-				}
-				xd[i] = this.children[i];
-			}
-			this.children = xd;
-		}
+		if (children == null || children.length == 0) {
+            return 0;
+        } else {
+            long meretxd = 0;
+            for (FileSystemEntry child : children) {
+            	meretxd += child.size();
+            }
+            return meretxd;
+        }
 	}
 }
