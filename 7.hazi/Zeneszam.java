@@ -24,7 +24,7 @@ public class Zeneszam implements BesorolassalRendelkezo{
 		int szam = 0;
 		for (int i = 0; i < bontottSzoveg.length; i++) {
 			for (int j = 0; j < szavak.length; j++) {
-				if(bontottSzoveg[i] == szavak[j] && bontottSzoveg[i] == szavak[j] + ",") {
+				if(bontottSzoveg[i].equals(szavak[j])) {
 					szam++;
 				}
 			}
